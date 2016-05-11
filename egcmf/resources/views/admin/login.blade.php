@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.adminapp')
 
 @section('content')
 <div class="container">
@@ -54,7 +54,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i>登陆
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">忘记密码?</a>
+                                <a class="btn btn-link" href="{{ url('/admin/password/reset') }}">忘记密码?</a>
                             </div>
                         </div>
                     </form>
