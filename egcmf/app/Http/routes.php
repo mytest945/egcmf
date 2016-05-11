@@ -10,14 +10,32 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-/**
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-*/
-Route::get('/', function () {
+
+// Cms pages
+Route::get('/cms', function () {
     return redirect('/cms');
 });
 
 Route::get('cms', 'CmsController@index');
 Route::get('cms/{slug}', 'CmsController@showPost');
+
+/*
+Route::auth();
+Route::get('/home', 'HomeController@index');
+*/
+Route::group(['middleware'], function () {
+
+    Route::auth();
+    Route::get('home', 'HomeController@index');
+
+    Route::get('admin/login', 'Admin\AuthController@getLogin');
+    Route::post('admin/login', 'Admin\AuthController@postLogin');
+    Route::get('admin/register', 'Admin\AuthController@getRegister');
+    Route::post('admin/register', 'Admin\AuthController@postRegister');
+    Route::get('admin', 'AdminController@index');
+
+});
