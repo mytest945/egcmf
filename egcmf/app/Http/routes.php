@@ -34,13 +34,10 @@ Route::group(['middleware'], function () {
 
     Route::get('admin/login', 'Admin\AuthController@getLogin');
     Route::post('admin/login', 'Admin\AuthController@postLogin');
-    Route::get('admin/register', 'Admin\AuthController@getRegister');
-    Route::post('admin/register', 'Admin\AuthController@postRegister');
-
+    //Route::get('admin/register', 'Admin\AuthController@getRegister');
+    //Route::post('admin/register', 'Admin\AuthController@postRegister');
     Route::get('admin/logout', 'Admin\AuthController@getLogout');
 
     Route::get('admin', 'AdminController@index');
-
-
 
 });

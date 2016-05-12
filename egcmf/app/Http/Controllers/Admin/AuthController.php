@@ -11,7 +11,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
+    
+    protected $redirectAfterLogout = '/admin/login';
     protected $redirectTo = '/admin';
     protected $guard = 'admin';
     protected $loginView = 'admin.login';
