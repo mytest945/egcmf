@@ -27,6 +27,7 @@ Route::get('cms/{slug}', 'CmsController@showPost');
 Route::auth();
 Route::get('/home', 'HomeController@index');
 */
+
 Route::group(['middleware'], function () {
 
     Route::auth();
@@ -41,3 +42,21 @@ Route::group(['middleware'], function () {
     Route::get('admin', 'AdminController@index');
 
 });
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth:admin']], function () {
+    //Route::resource('admin/post', 'Admin\PostController');
+    Route::resource('post', 'PostController');
+    Route::resource('tag', 'TagController');
+
+    Route::resource('tag', 'TagController', ['except' => 'show']);
+
+
+    Route::get('upload', 'UploadController@index');
+
+    Route::post('/upload/file', 'UploadController@uploadFile');
+    Route::delete('/upload/file', 'UploadController@deleteFile');
+    Route::post('/upload/folder', 'UploadController@createFolder');
+    Route::delete('/upload/folder', 'UploadController@deleteFolder');
+});
+
+
